@@ -49,6 +49,7 @@ const ev = f
   {ev ? <script type="application/ld+json" set:html={JSON.stringify(ev)} /> : null}
   <nav class="crumb"><a href="/">홈</a><span>›</span><span>{a.title.replace(" 일정·장소·즐기는 법", "").replace(" 정리", "")}</span></nav>
   <h1>{titlePlain}</h1>
+  <p class="deck">{a.description}</p>
   <p class="meta">장소: {f?.place ?? ""}{f?.tel ? ` · 문의: ${f.tel}` : ""} · 출처: 한국관광공사 TourAPI</p>
   <p class="byline">작성: 떠나모아 운영팀 · 최종 확인: 2026-09-23 · 오류 제보는 <a href="/contact/">문의 페이지</a>로 보내주세요.</p>
   <Fragment set:html={a.body} />

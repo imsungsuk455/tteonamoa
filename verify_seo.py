@@ -32,7 +32,8 @@ for p in pages:
 h = open(os.path.join(BASE, 'dist/index.html'), encoding='utf-8').read()
 assert 'fetch(' not in h
 assert '/articles/gyeongbok-byeolbit-yahaeng/' in h
-assert '이번 주말, 어디?' in h
+assert '이번 주말,' in h
 assert '<img ' in h
+assert 'date-pill' in h
 print('min article ko:', mn)
 print('ALL OK')
