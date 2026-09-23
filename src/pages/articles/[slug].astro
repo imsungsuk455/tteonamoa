@@ -52,24 +52,6 @@ const ev = f
   <p class="meta">장소: {f?.place ?? ""}{f?.tel ? ` · 문의: ${f.tel}` : ""} · 출처: 한국관광공사 TourAPI</p>
   <p class="byline">작성: 떠나모아 운영팀 · 최종 확인: 2026-09-23 · 오류 제보는 <a href="/contact/">문의 페이지</a>로 보내주세요.</p>
   <Fragment set:html={a.body} />
-  {a.review ? (
-    <section class="review">
-      <h2>운영자 방문 후기</h2>
-      <p class="rev-date">방문일: {a.review.visited_at} · {a.review.weather || ""}</p>
-      <div class="rev-grid">
-        <div class="rev-item"><b>인파·대기</b><p>{a.review.crowd}</p></div>
-        <div class="rev-item"><b>주차·교통</b><p>{a.review.transport}</p></div>
-        <div class="rev-item"><b>먹거리·시설</b><p>{a.review.facilities}</p></div>
-        <div class="rev-item"><b>총평</b><p>{a.review.verdict}</p></div>
-      </div>
-      <p class="rev-note">{a.review.tip}</p>
-      {a.review.photos?.length ? (
-        <div class="rev-photos">
-          {a.review.photos.map((p) => <img src={p} alt={`${titlePlain} 방문 사진`} loading="lazy" decoding="async" />)}
-        </div>
-      ) : null}
-    </section>
-  ) : null}
   <h2>함께 보면 좋은 축제</h2>
   <ul class="related">
     {(a.related ?? []).map((r) => (
@@ -81,15 +63,5 @@ const ev = f
     .crumb a{color:var(--muted);text-decoration:none}
     .crumb a:hover{color:var(--ink)}
     .crumb span{margin:0 6px}
-    .review{background:var(--cloud);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:26px 0 6px}
-    .review h2{margin-top:0}
-    .rev-date{font-size:.83rem;color:var(--muted);font-weight:600}
-    .rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
-    @media(max-width:560px){.rev-grid{grid-template-columns:1fr}}
-    .rev-item b{display:block;font-size:.8rem;color:var(--muted);margin-bottom:4px}
-    .rev-item p{font-size:.9rem;margin:0;line-height:1.7}
-    .rev-note{font-size:.9rem;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
-    .rev-photos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-    .rev-photos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
   </style>
 </Base>
