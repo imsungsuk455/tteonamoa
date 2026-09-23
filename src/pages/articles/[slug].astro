@@ -11,10 +11,11 @@ const { slug } = Astro.params;
 const a = articles.find((x) => x.slug === slug);
 if (!a) throw new Error("missing article " + slug);
 const f = festivals.find((x) => x.slug === slug);
+const titlePlain = a.title.replace(" | 떠나모아", "");
 const ld = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: a.title.replace(" | 떠나모아", ""),
+  headline: titlePlain,
   description: a.description,
   image: [a.image],
   datePublished: "2026-09-23",
@@ -23,9 +24,31 @@ const ld = {
   publisher: { "@type": "Organization", name: "떠나모아", url: "https://tteonamoa.org/" },
   mainEntityOfPage: a.canonical,
 };
+const ev = f
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      name: titlePlain,
+      description: a.description,
+      startDate: (f.start || "").replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"),
+      endDate: (f.end || "").replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"),
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      location: {
+        "@type": "Place",
+        name: f.place || "",
+        address: { "@type": "PostalAddress", addressLocality: f.region || "" },
+      },
+      image: a.image,
+      organizer: { "@type": "Organization", name: f.official?.sponsor1 || "주최 기관" },
+    }
+  : null;
 ---
 <Base title={a.title} description={a.description} canonical={a.canonical}>
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  {ev ? <script type="application/ld+json" set:html={JSON.stringify(ev)} /> : null}
+  <nav class="crumb"><a href="/">홈</a><span>›</span><span>{a.title.replace(" 일정·장소·즐기는 법", "").replace(" 정리", "")}</span></nav>
+  <h1>{titlePlain}</h1>
   <p class="meta">장소: {f?.place ?? ""}{f?.tel ? ` · 문의: ${f.tel}` : ""} · 출처: 한국관광공사 TourAPI</p>
   <p class="byline">작성: 떠나모아 운영팀 · 최종 확인: 2026-09-23 · 오류 제보는 <a href="/contact/">문의 페이지</a>로 보내주세요.</p>
   <Fragment set:html={a.body} />
@@ -36,8 +59,9 @@ const ld = {
     ))}
   </ul>
   <style>
-    .related{list-style:none;margin:6px 0 10px;padding:0}
-    .related li{margin:6px 0}
-    .related a{color:#0e9f6e;font-size:.93rem}
+    .crumb{font-size:.82rem;color:var(--muted);margin-top:18px}
+    .crumb a{color:var(--muted);text-decoration:none}
+    .crumb a:hover{color:var(--ink)}
+    .crumb span{margin:0 6px}
   </style>
 </Base>
