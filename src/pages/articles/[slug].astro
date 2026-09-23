@@ -1,0 +1,43 @@
+---
+import Base from "../../layouts/Base.astro";
+import articles from "../../data/articles.json";
+import festivals from "../../../festivals.json";
+
+export function getStaticPaths() {
+  return articles.map((a) => ({ params: { slug: a.slug } }));
+}
+
+const { slug } = Astro.params;
+const a = articles.find((x) => x.slug === slug);
+if (!a) throw new Error("missing article " + slug);
+const f = festivals.find((x) => x.slug === slug);
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: a.title.replace(" | 떠나모아", ""),
+  description: a.description,
+  image: [a.image],
+  datePublished: "2026-09-23",
+  dateModified: "2026-09-23",
+  author: { "@type": "Organization", name: "떠나모아", url: "https://tteonamoa.org/" },
+  publisher: { "@type": "Organization", name: "떠나모아", url: "https://tteonamoa.org/" },
+  mainEntityOfPage: a.canonical,
+};
+---
+<Base title={a.title} description={a.description} canonical={a.canonical}>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <p class="meta">장소: {f?.place ?? ""}{f?.tel ? ` · 문의: ${f.tel}` : ""} · 출처: 한국관광공사 TourAPI</p>
+  <p class="byline">작성: 떠나모아 운영팀 · 최종 확인: 2026-09-23 · 오류 제보는 <a href="/contact/">문의 페이지</a>로 보내주세요.</p>
+  <Fragment set:html={a.body} />
+  <h2>함께 보면 좋은 축제</h2>
+  <ul class="related">
+    {(a.related ?? []).map((r) => (
+      <li><a href={`/articles/${r.id}/`}>{r.title}</a></li>
+    ))}
+  </ul>
+  <style>
+    .related{list-style:none;margin:6px 0 10px;padding:0}
+    .related li{margin:6px 0}
+    .related a{color:#0e9f6e;font-size:.93rem}
+  </style>
+</Base>
