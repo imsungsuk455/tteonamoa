@@ -1617,7 +1617,7 @@
   "fee": "공식 확인",
   "summary": "사천에어쇼 일정·장소 확인",
   "tel": "055-831-2061",
-  "image": "http://tong.visitkorea.or.kr/cms/resource/49/3566649_image2_1.png",
+  "image": "https://tong.visitkorea.or.kr/cms/resource/49/3566649_image2_1.png",
   "mapx": "128.0699132182",
   "mapy": "35.0911816485",
   "source": "TourAPI",
