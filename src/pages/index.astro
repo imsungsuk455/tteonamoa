@@ -14,6 +14,37 @@ const fmt = (ymd) => {
   const y = +ymd.slice(0, 4), m = +ymd.slice(4, 6), d = +ymd.slice(6, 8);
   return `${m}.${d}(${DAY[new Date(y, m - 1, d).getDay()]})`;
 };
+// --- 빌드 시점(KST) 기준 주말·디데이 계산 ---
+const nowKst = new Date(Date.now() + 9 * 3600 * 1000);
+const today = new Date(nowKst.getFullYear(), nowKst.getMonth(), nowKst.getDate());
+const dow = today.getDay();
+const sat = new Date(today); sat.setDate(today.getDate() + ((6 - dow + 7) % 7));
+const sun = new Date(sat); sun.setDate(sat.getDate() + 1);
+const key = (d) => `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
+const SAT = key(sat), SUN = key(sun);
+const wk = (d) => `${d.getMonth() + 1}.${d.getDate()}(${DAY[d.getDay()]})`;
+const toDate = (ymd) => new Date(+ymd.slice(0, 4), +ymd.slice(4, 6) - 1, +ymd.slice(6, 8));
+const areaOf = (region) => {
+  const w = (region || "").split(" ")[0];
+  if (/^(서울|인천|경기)/.test(w)) return "수도권";
+  if (/^강원/.test(w)) return "강원";
+  if (/^충청|충북|충남|세종|대전/.test(w)) return "충청";
+  if (/^전라|전북|전남|광주|전남광주/.test(w)) return "전라";
+  if (/^경상|경북|경남|부산|대구|울산/.test(w)) return "경상";
+  if (/^제주/.test(w)) return "제주";
+  return w || "기타";
+};
+const cards = list.map((x) => {
+  const dStart = Math.round((toDate(x.start).getTime() - today.getTime()) / 86400000);
+  const dEnd = Math.round((toDate(x.end).getTime() - today.getTime()) / 86400000);
+  const weekend = x.start === SAT || x.start === SUN;
+  const state = dStart > 0 ? `개막 D-${dStart}` : dEnd < 0 ? "종료" : dEnd <= 7 ? `막바지 D-${dEnd}` : "진행중";
+  const hot = dStart <= 0 && dEnd >= 0 && dEnd <= 7 || (dStart >= 0 && dStart <= 3);
+  return { x, a: byId[x.id], dStart, dEnd, weekend, state, hot, night: NIGHT.includes(x.id), area: areaOf(x.region) };
+});
+const AREAS = ["수도권", "강원", "충청", "전라", "경상", "제주"].filter((a) => cards.some((c) => c.area === a));
+const nWeekend = cards.filter((c) => c.weekend).length;
+const nHot = cards.filter((c) => c.hot).length;
 const desc = "이번 주말 가볼 곳을 날짜 순으로 정리합니다. 야간·불꽃 축제부터 먹거리 장터까지, 장소와 문의처, 방문 전 확인사항을 담았습니다.";
 ---
 <!DOCTYPE html>
@@ -28,6 +59,8 @@ const desc = "이번 주말 가볼 곳을 날짜 순으로 정리합니다. 야�
 <meta name="google-site-verification" content="SCnwxJPg6gtRKQxOsf54iaVaTOig5MJmHSFehDkJpao" />
 <meta name="google-adsense-account" content={PUB}>
 <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${PUB}`} crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://tong.visitkorea.or.kr">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <style>
 /* better-design Airbnb tokens (2026-04 production extract) */
@@ -43,9 +76,11 @@ const desc = "이번 주말 가볼 곳을 날짜 순으로 정리합니다. 야�
 --shadow-xs:0 1px 2px rgba(0,0,0,.06);
 --shadow-sm:0 1px 2px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.05);
 --shadow:0 2px 4px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.08);
+--shadow-lg:0 8px 28px rgba(230,30,77,.14),0 2px 8px rgba(0,0,0,.08);
 --font:Pretendard,-apple-system,"Noto Sans KR",sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--muted);color:var(--foreground);line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased;padding-bottom:40px}
 .wrap{max-width:1020px;margin:0 auto;padding:0 20px}
 .topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
@@ -53,44 +88,66 @@ body{font-family:var(--font);background:var(--muted);color:var(--foreground);lin
 .logo{font-weight:800;font-size:1.22rem;letter-spacing:-.4px;text-decoration:none;color:var(--foreground)}
 .logo em{font-style:normal;color:var(--primary)}
 .tagline{font-size:.78rem;color:var(--muted-foreground);border:1px solid var(--border);border-radius:999px;padding:4px 12px;white-space:nowrap}
-/* 히어로 */
-.hero{margin:30px 0 20px;background:var(--card);border:1px solid var(--border);border-radius:calc(var(--radius)+4px);box-shadow:var(--shadow-sm);padding:40px 36px}
-.hero h1{font-size:2.3rem;font-weight:800;letter-spacing:-1px;margin-bottom:12px;line-height:1.35}
-.hero p.deck{color:var(--muted-foreground);font-size:1rem;line-height:1.85;max-width:560px}
-.hero .note{font-size:.82rem;color:var(--muted-foreground);margin-top:14px}
-.stats{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap}
-.stat{background:var(--muted);border:1px solid var(--border);border-radius:12px;padding:10px 16px}
-.stat b{display:block;font-size:1.2rem;font-weight:800;color:var(--foreground);letter-spacing:-.5px}
+/* 히어로: 에디토리얼 + 핑크 워시 */
+.hero{position:relative;margin:30px 0 20px;background:var(--card);border:1px solid var(--border);border-radius:calc(var(--radius)+8px);box-shadow:var(--shadow-sm);padding:44px 40px;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;background:radial-gradient(circle,rgba(255,56,92,.14) 0%,rgba(255,56,92,0) 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;left:38%;bottom:-160px;width:300px;height:300px;background:radial-gradient(circle,rgba(215,4,102,.08) 0%,rgba(215,4,102,0) 70%);pointer-events:none}
+.eyebrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;position:relative;z-index:1}
+.eyebrow .pill{font-size:.76rem;font-weight:700;border-radius:999px;padding:5px 13px;letter-spacing:-.2px}
+.eyebrow .pink{background:var(--primary);color:#fff}
+.eyebrow .line{border:1px solid var(--border);color:var(--muted-foreground);background:#fff}
+.hero h1{font-size:2.5rem;font-weight:800;letter-spacing:-1.2px;margin-bottom:12px;line-height:1.3;position:relative;z-index:1}
+.hero h1 .hl{background:linear-gradient(transparent 62%,rgba(255,56,92,.28) 62%);padding:0 2px}
+.hero p.deck{color:var(--muted-foreground);font-size:1rem;line-height:1.85;max-width:580px;position:relative;z-index:1}
+.hero .note{font-size:.82rem;color:var(--muted-foreground);margin-top:14px;position:relative;z-index:1}
+.stats{display:flex;gap:0;margin-top:26px;flex-wrap:wrap;position:relative;z-index:1}
+.stat{padding:2px 26px 2px 0;margin-right:26px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat b{display:block;font-size:1.55rem;font-weight:800;letter-spacing:-.8px;line-height:1.25}
+.stat b em{font-style:normal;color:var(--primary)}
 .stat span{font-size:.78rem;color:var(--muted-foreground)}
-.hero .cta{display:inline-block;margin-top:24px;background:var(--rausch);color:var(--primary-foreground);font-weight:600;font-size:.95rem;text-decoration:none;padding:14px 30px;border-radius:10px;box-shadow:var(--shadow-sm)}
-.hero .cta:hover{box-shadow:var(--shadow)}
+.hero .cta{display:inline-block;margin-top:26px;background:var(--rausch);color:var(--primary-foreground);font-weight:700;font-size:.95rem;text-decoration:none;padding:15px 34px;border-radius:12px;box-shadow:var(--shadow-sm);position:relative;z-index:1}
+.hero .cta:hover{box-shadow:var(--shadow-lg)}
 .hero .cta:active{transform:translateY(1px)}
 .notice{background:var(--muted);border:1px solid var(--border);border-radius:12px;padding:12px 16px;font-size:.85rem;color:var(--muted-foreground);margin:0 2px 28px;line-height:1.7}
-.sec-head{display:flex;align-items:center;gap:12px;margin:34px 2px 14px}
-.sec-head h2{font-size:1.45rem;font-weight:800;letter-spacing:-.5px}
-.sec-head span{font-size:.82rem;color:var(--muted-foreground);background:var(--muted);border:1px solid var(--border);border-radius:999px;padding:3px 10px}
-/* 카드: 보더 + 미묘한 레이어드 섀도우 */
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:1.8rem}.hero{padding:28px 22px}}
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s ease}
-.card:hover{box-shadow:var(--shadow)}
-.card .thumb{position:relative}
-.card .thumb img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--muted)}
-.card .date-pill{position:absolute;left:12px;top:12px;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-weight:700;font-size:.8rem;letter-spacing:-.2px;color:var(--foreground);box-shadow:var(--shadow-xs)}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin:34px 2px 12px;flex-wrap:wrap}
+.sec-head h2{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.sec-head span.count{font-size:.82rem;color:var(--muted-foreground);background:var(--muted);border:1px solid var(--border);border-radius:999px;padding:3px 10px}
+.sec-head .hint{margin-left:auto;font-size:.82rem;color:var(--muted-foreground)}
+/* 지역 칩 필터 */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 2px 4px}
+.chips button{border:1px solid var(--border);background:#fff;border-radius:999px;padding:9px 17px;cursor:pointer;font-size:.86rem;font-weight:600;font-family:inherit;color:var(--muted-foreground);transition:.15s}
+.chips button:hover{border-color:var(--primary);color:var(--primary)}
+.chips button.active{background:var(--secondary);border-color:var(--secondary);color:#fff}
+#festivals{scroll-margin-top:76px}
+/* 카드 */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
+.grid [hidden]{display:none}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:1.9rem}.hero{padding:32px 24px}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.card .thumb{position:relative;overflow:hidden}
+.card .thumb img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--muted);transition:transform .4s ease}
+.card:hover .thumb img{transform:scale(1.04)}
+.card .date-pill{position:absolute;left:12px;top:12px;background:rgba(255,255,255,.96);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-weight:700;font-size:.8rem;letter-spacing:-.2px;color:var(--foreground);box-shadow:var(--shadow-xs);z-index:1}
+.card .dday{position:absolute;right:12px;top:12px;border-radius:999px;padding:5px 12px;font-weight:800;font-size:.78rem;letter-spacing:-.2px;z-index:1}
+.card .dday.hot{background:var(--primary);color:#fff;box-shadow:0 2px 10px rgba(255,56,92,.45)}
+.card .dday.run{background:rgba(34,34,34,.82);color:#fff}
 .card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:7px;flex:1}
 .badges{display:flex;gap:6px;flex-wrap:wrap}
 .badge{font-size:.72rem;font-weight:600;border-radius:999px;padding:3px 10px}
 .night{background:var(--secondary);color:var(--secondary-foreground)}
 .day{background:var(--muted);border:1px solid var(--border);color:var(--muted-foreground)}
-.region{background:var(--muted);border:1px solid var(--border);color:var(--muted-foreground)}
-.card h3{font-size:1.06rem;font-weight:700;letter-spacing:-.3px;line-height:1.5}
+.region{background:#FFF1F4;border:1px solid #FFD4DE;color:#D70466}
+.card h3{font-size:1.08rem;font-weight:700;letter-spacing:-.3px;line-height:1.5}
 .card h3 a{color:var(--foreground);text-decoration:none}
 .card h3 a:hover{color:var(--primary)}
 .card .place{color:var(--muted-foreground);font-size:.84rem;line-height:1.6}
 .card .dates{color:var(--foreground);font-size:.84rem;font-weight:600}
 .card .links{margin-top:auto;padding-top:8px}
-.card .links a{color:var(--foreground);font-size:.86rem;font-weight:600;text-decoration:none;border-bottom:2px solid var(--primary);padding-bottom:2px}
+.card .links a{color:var(--foreground);font-size:.86rem;font-weight:700;text-decoration:none;border-bottom:2px solid var(--primary);padding-bottom:2px}
 .card .links a:hover{color:var(--primary)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted-foreground);font-size:.9rem;padding:36px 0;border:1px dashed var(--border);border-radius:var(--radius);background:#fff}
 footer{margin-top:48px;background:var(--muted);border-top:1px solid var(--border);padding:28px 20px;text-align:center;font-size:.8rem;color:var(--muted-foreground);line-height:2}
 footer a{color:var(--muted-foreground);text-decoration:none;margin:0 8px}
 footer a:hover{color:var(--foreground)}
@@ -104,37 +161,42 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ring);outline-offse
 </div></div>
 <div class="wrap">
 <section class="hero">
-<h1>이번 주말, 어디?</h1>
+<div class="eyebrow"><span class="pill pink">주말 축제 큐레이션</span><span class="pill line">이번 주말 {wk(sat)}~{wk(sun)}</span></div>
+<h1>이번 주말,<br><span class="hl">어디</span> 갈까?</h1>
 <p class="deck">{desc}</p>
 <p class="note">떠나모아는 공개 정보를 직접 확인해 매일 정리합니다.</p>
 <div class="stats">
-<div class="stat"><b>{list.length}</b><span>정리된 축제</span></div>
-<div class="stat"><b>10월</b><span>가을 축제 성수기</span></div>
+<div class="stat"><b><em>{list.length}</em>곳</b><span>정리된 축제</span></div>
+<div class="stat"><b>{nWeekend}곳</b><span>이번 주말 개막</span></div>
+<div class="stat"><b>{nHot}곳</b><span>마감 임박·개막 코앞</span></div>
 </div>
 <a class="cta" href="#festivals">축제 일정 보러 가기</a>
 </section>
 <div class="notice">일정·장소·요금은 변동될 수 있습니다. 방문 전 각 축제 공식 홈페이지와 문의처에서 최종 내용을 확인하세요. 출처: 한국관광공사 TourAPI.</div>
 <section id="festivals">
-<div class="sec-head"><h2>축제·행사 일정</h2><span>{list.length}곳</span></div>
-<div class="grid">
-{list.map((x) => {
-  const a = byId[x.id];
-  return (
-  <article class="card">
-  <div class="thumb">
-  <span class="date-pill">{fmt(x.start)}</span>
-  <img src={x.image || ""} alt={a?.imageAlt || `${x.title} 축제 현장`} loading="lazy" decoding="async" referrerpolicy="no-referrer" />
-  </div>
-  <div class="body">
-  <div class="badges">{NIGHT.includes(x.id) ? <span class="badge night">야간</span> : <span class="badge day">주간</span>}<span class="badge region">{x.region}</span></div>
-  <h3><a href={`/articles/${x.slug}/`}>{x.title}</a></h3>
-  <div class="place">{x.place}</div>
-  <div class="dates">{fmt(x.start)}~{fmt(x.end)}</div>
-  <div class="links"><a href={`/articles/${x.slug}/`}>일정·장소 보기</a></div>
-  </div>
-  </article>
-  );
-})}
+<div class="sec-head"><h2>축제·행사 일정</h2><span class="count" id="festCount">{list.length}곳</span><span class="hint">지역을 골라보세요</span></div>
+<div class="chips" id="areaChips">
+<button data-area="all" class="active">전체</button>
+<button data-area="weekend">이번 주말 개막</button>
+{AREAS.map((a) => <button data-area={a}>{a}</button>)}
+</div>
+<div class="grid" id="festGrid">
+{cards.map(({ x, a, state, hot, weekend, night, area }, i) => (
+<article class="card" data-area={area} data-weekend={weekend ? "1" : "0"}>
+<div class="thumb">
+<span class="date-pill">{fmt(x.start)}</span>
+<span class={`dday ${hot ? "hot" : "run"}`}>{state}</span>
+<img src={x.image || ""} alt={a?.imageAlt || `${x.title} 축제 현장`} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : undefined} decoding="async" referrerpolicy="no-referrer" />
+</div>
+<div class="body">
+<div class="badges">{night ? <span class="badge night">야간</span> : <span class="badge day">주간</span>}<span class="badge region">{x.region}</span></div>
+<h3><a href={`/articles/${x.slug}/`}>{x.title}</a></h3>
+<div class="place">{x.place}</div>
+<div class="dates">{fmt(x.start)}~{fmt(x.end)}</div>
+<div class="links"><a href={`/articles/${x.slug}/`}>일정·장소 보기</a></div>
+</div>
+</article>
+))}
 </div>
 </section>
 </div>
@@ -143,5 +205,32 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ring);outline-offse
 출처: 한국관광공사 TourAPI (원문 정보 병기)<br>
 최종 일정은 반드시 공식 홈페이지에서 확인하세요.
 </footer>
+<script is:inline>
+(function(){
+  var chips = document.getElementById("areaChips");
+  var grid = document.getElementById("festGrid");
+  var count = document.getElementById("festCount");
+  if(!chips || !grid) return;
+  var cards = Array.prototype.slice.call(grid.querySelectorAll(".card"));
+  chips.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    var key = b.getAttribute("data-area");
+    var btns = chips.querySelectorAll("button");
+    for(var i = 0; i < btns.length; i++) btns[i].classList.remove("active");
+    b.classList.add("active");
+    var shown = 0;
+    cards.forEach(function(c){
+      var ok = key === "all" ? true : key === "weekend" ? c.getAttribute("data-weekend") === "1" : c.getAttribute("data-area") === key;
+      if(ok){ c.removeAttribute("hidden"); shown++; } else { c.setAttribute("hidden", ""); }
+    });
+    var empty = document.getElementById("festEmpty");
+    if(shown === 0){
+      if(!empty){ empty = document.createElement("p"); empty.id = "festEmpty"; empty.className = "empty"; empty.textContent = "해당 조건의 축제가 없어요. 전체 보기로 다른 일정을 확인해 보세요."; grid.appendChild(empty); }
+    } else if(empty){ empty.remove(); }
+    count.textContent = shown + "곳";
+  });
+})();
+</script>
 </body>
 </html>
