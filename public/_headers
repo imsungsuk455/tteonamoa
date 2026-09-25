@@ -1,0 +1,15 @@
+# Cloudflare Pages 캐시 정책 (엣지 HIT으로 TTFB 단축)
+# 주의: HTML/JSON을 엣지에서 HIT시키려면 대시보드 Cache Rules에서
+# "Eligible for cache"도 함께 켜야 함 (기본값은 DYNAMIC 우회)
+
+# 해시 포함 빌드 산출물: 내용이 바뀌면 파일명이 바뀌므로 영구 캐시
+/_astro/*:
+  Cache-Control: public, max-age=31536000, immutable
+
+# id 주소 글: 발행 후 내용이 바뀌지 않음
+/articles/*:
+  Cache-Control: public, max-age=86400, s-maxage=2592000
+
+# 홈: 글 발행 때만 바뀜 (배포 시점에 갱신)
+/:
+  Cache-Control: public, max-age=1800, s-maxage=3600
