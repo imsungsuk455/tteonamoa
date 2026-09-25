@@ -43,6 +43,8 @@ const cards = list.map((x) => {
   return { x, a: byId[x.id], dStart, dEnd, weekend, state, hot, night: NIGHT.includes(x.id), area: areaOf(x.region) };
 });
 const AREAS = ["수도권", "강원", "충청", "전라", "경상", "제주"].filter((a) => cards.some((c) => c.area === a));
+cards.sort((a, b) => a.x.start.localeCompare(b.x.start) || a.x.end.localeCompare(b.x.end));
+const PAGE = 24;
 const nWeekend = cards.filter((c) => c.weekend).length;
 const nHot = cards.filter((c) => c.hot).length;
 const desc = "이번 주말 가볼 곳을 날짜 순으로 정리합니다. 야간·불꽃 축제부터 먹거리 장터까지, 장소와 문의처, 방문 전 확인사항을 담았습니다.";
@@ -147,6 +149,8 @@ body{font-family:var(--font);background:var(--muted);color:var(--foreground);lin
 .card .links{margin-top:auto;padding-top:8px}
 .card .links a{color:var(--foreground);font-size:.86rem;font-weight:700;text-decoration:none;border-bottom:2px solid var(--primary);padding-bottom:2px}
 .card .links a:hover{color:var(--primary)}
+#moreBtn{border:1px solid var(--border);background:#fff;border-radius:999px;padding:13px 34px;cursor:pointer;font-size:.92rem;font-weight:700;font-family:inherit;color:var(--foreground);box-shadow:var(--shadow-sm)}
+#moreBtn:hover{border-color:var(--primary);color:var(--primary)}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted-foreground);font-size:.9rem;padding:36px 0;border:1px dashed var(--border);border-radius:var(--radius);background:#fff}
 footer{margin-top:48px;background:var(--muted);border-top:1px solid var(--border);padding:28px 20px;text-align:center;font-size:.8rem;color:var(--muted-foreground);line-height:2}
 footer a{color:var(--muted-foreground);text-decoration:none;margin:0 8px}
@@ -182,7 +186,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ring);outline-offse
 </div>
 <div class="grid" id="festGrid">
 {cards.map(({ x, a, state, hot, weekend, night, area }, i) => (
-<article class="card" data-area={area} data-weekend={weekend ? "1" : "0"}>
+<article class="card" data-area={area} data-weekend={weekend ? "1" : "0"} hidden={i >= PAGE}>
 <div class="thumb">
 <span class="date-pill">{fmt(x.start)}</span>
 <span class={`dday ${hot ? "hot" : "run"}`}>{state}</span>
@@ -198,6 +202,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ring);outline-offse
 </article>
 ))}
 </div>
+<div id="moreWrap" style="display:none;text-align:center;margin:22px 2px 6px"><button id="moreBtn" type="button">더보기</button></div>
 </section>
 </div>
 <footer>
@@ -207,29 +212,45 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ring);outline-offse
 </footer>
 <script is:inline>
 (function(){
+  var PAGE = 24;
   var chips = document.getElementById("areaChips");
   var grid = document.getElementById("festGrid");
   var count = document.getElementById("festCount");
+  var wrap = document.getElementById("moreWrap");
+  var more = document.getElementById("moreBtn");
   if(!chips || !grid) return;
   var cards = Array.prototype.slice.call(grid.querySelectorAll(".card"));
-  chips.addEventListener("click", function(e){
-    var b = e.target.closest("button");
-    if(!b) return;
-    var key = b.getAttribute("data-area");
-    var btns = chips.querySelectorAll("button");
-    for(var i = 0; i < btns.length; i++) btns[i].classList.remove("active");
-    b.classList.add("active");
-    var shown = 0;
+  var cur = "all", visible = PAGE;
+  function apply(){
+    var matched = 0, shown = 0;
     cards.forEach(function(c){
-      var ok = key === "all" ? true : key === "weekend" ? c.getAttribute("data-weekend") === "1" : c.getAttribute("data-area") === key;
-      if(ok){ c.removeAttribute("hidden"); shown++; } else { c.setAttribute("hidden", ""); }
+      var ok = cur === "all" ? true : cur === "weekend" ? c.getAttribute("data-weekend") === "1" : c.getAttribute("data-area") === cur;
+      if(ok){
+        matched++;
+        if(matched <= visible){ c.removeAttribute("hidden"); shown++; }
+        else { c.setAttribute("hidden", ""); }
+      } else { c.setAttribute("hidden", ""); }
     });
     var empty = document.getElementById("festEmpty");
-    if(shown === 0){
+    if(matched === 0){
       if(!empty){ empty = document.createElement("p"); empty.id = "festEmpty"; empty.className = "empty"; empty.textContent = "해당 조건의 축제가 없어요. 전체 보기로 다른 일정을 확인해 보세요."; grid.appendChild(empty); }
     } else if(empty){ empty.remove(); }
     count.textContent = shown + "곳";
+    if(shown < matched){ wrap.style.display = "block"; more.textContent = "더보기 (" + shown + "/" + matched + "곳 · 남은 " + (matched - shown) + "곳)"; }
+    else { wrap.style.display = "none"; }
+  }
+  chips.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    cur = b.getAttribute("data-area");
+    visible = PAGE;
+    var btns = chips.querySelectorAll("button");
+    for(var i = 0; i < btns.length; i++) btns[i].classList.remove("active");
+    b.classList.add("active");
+    apply();
   });
+  more.addEventListener("click", function(){ visible += PAGE; apply(); });
+  apply();
 })();
 </script>
 </body>
