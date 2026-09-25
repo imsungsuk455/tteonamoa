@@ -618,7 +618,24 @@
   "mapx": "126.7686505728",
   "mapy": "37.6538241589",
   "source": "TourAPI",
-  "status": "upcoming"
+  "status": "upcoming",
+  "slug": "goyang-autumn-flower-festival",
+  "homepage": "",
+  "official": {
+   "sponsor1": "(재)고양국제박람회재단",
+   "sponsor1tel": "031-908-7750",
+   "playtime": "09:00-18:00",
+   "eventplace": "일산호수공원",
+   "eventhomepage": "",
+   "agelimit": "",
+   "bookingplace": "",
+   "placeinfo": "",
+   "subevent": "",
+   "program": "1. 가을 테마정원 및 포토존\n- 전시주제 가을 빠레뜨를 반영한 다채로운 가을꽃 정원 및 포토존 조성\n\n2. 한글날 제정 100주년 기념 화단\n- 한글날의 의미를 꽃과 정원으로 표현한 기념 홍보화단 연출\n\n3. 2027 고양국제꽃박람회 30주년 기념 포토존\n- 30주년을 미리 만나볼 수 있는 특별 포토존 및 시민 참여 메시지월 운영\n\n4. 플라워마켓\n- 다양한 화훼류를 만나보고 구매할 수 있는 꽃 판매장 운영\n\n5. 수상자전거 체험\n- 일산호수공원의 풍경과 가을꽃을 함께 즐기는 수상자전거 체험",
+   "usetimefestival": "무료",
+   "discountinfofestival": "",
+   "spendtimefestival": ""
+  }
  },
  {
   "id": "f-604454",
