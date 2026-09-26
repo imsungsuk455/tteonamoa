@@ -57,6 +57,16 @@ const desc = "이번 주말 가볼 곳을 날짜 순으로 정리합니다. 야�
 <title>{title}</title>
 <meta name="description" content={description}>
 <link rel="canonical" href="https://tteonamoa.org/">
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content="떠나모아" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content="https://tteonamoa.org/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://tteonamoa.org/#organization","name":"떠나모아","url":"https://tteonamoa.org/"},{"@type":"WebSite","@id":"https://tteonamoa.org/#website","url":"https://tteonamoa.org/","name":"떠나모아","alternateName":"tteonamoa","description":"이번 주말 전국 축제·행사 일정을 날짜 순으로 정리합니다.","inLanguage":"ko","publisher":{"@id":"https://tteonamoa.org/#organization"}}]}</script>
 <meta name="naver-site-verification" content="613b08ff25e700ee876e20ef44eb276f1177d287" />
 <meta name="google-site-verification" content="SCnwxJPg6gtRKQxOsf54iaVaTOig5MJmHSFehDkJpao" />
 <meta name="google-adsense-account" content={PUB}>

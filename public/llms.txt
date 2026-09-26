@@ -1,0 +1,34 @@
+# 떠나모아 (tteonamoa.org)
+> 이번 주말 전국 축제·행사 일정을 날짜 순으로 정리하는 무료 정보 사이트입니다. 한국관광공사 TourAPI 기반, 장소·문의처·방문 전 확인사항 포함.
+
+## 핵심 페이지
+- [홈](https://tteonamoa.org/): 이번 주말 축제·행사 일정 정리
+- [소개](https://tteonamoa.org/about/): 사이트 소개 및 데이터 출처
+- [문의](https://tteonamoa.org/contact/): 오류 제보 및 문의
+- [개인정보처리방침](https://tteonamoa.org/privacy/)
+- [이용약관](https://tteonamoa.org/terms/)
+
+## 축제 일정 (전체 글)
+- [여주오곡나루축제 가족 나들이 가이드](https://tteonamoa.org/articles/yeoju-ogok-naru-festival/)
+- [영주 무섬외나무다리축제 산책 가이드](https://tteonamoa.org/articles/yeongju-musum-bridge-festival/)
+- [양주 천일홍 페스타](https://tteonamoa.org/articles/yangju-cheonilhong-festa/)
+- [연천 율무축제](https://tteonamoa.org/articles/yeoncheon-yulmu-festival/)
+- [양재 플라워 페스타](https://tteonamoa.org/articles/yangjae-flower-festa/)
+- [경복궁 별빛야행](https://tteonamoa.org/articles/gyeongbok-byeolbit-yahaeng/)
+- [여수 밤바다 불꽃축제](https://tteonamoa.org/articles/yeosu-fireworks-festival/)
+- [영동난계국악축제](https://tteonamoa.org/articles/yeongdong-nangye-gugak-festival/)
+- [계룡군문화축제](https://tteonamoa.org/articles/gyeryong-military-festival/)
+- [고양 한주 한우축제](https://tteonamoa.org/articles/goyang-hanju-hanwoo-festival/)
+- [통영 어시장 축제](https://tteonamoa.org/articles/tongyeong-fish-market-festival/)
+- [고성명태축제](https://tteonamoa.org/articles/goseong-myeongtae-festival/)
+- [강경젓갈축제](https://tteonamoa.org/articles/ganggyeong-jeotgal-festival/)
+- [연산대추문화축제](https://tteonamoa.org/articles/nonsan-yeonsan-jujube-festival/)
+- [강릉커피축제](https://tteonamoa.org/articles/gangneung-coffee-festival/)
+- [강릉 빵축제](https://tteonamoa.org/articles/gangneung-bread-festival/)
+- [고양 가을꽃축제](https://tteonamoa.org/articles/goyang-autumn-flower-festival/)
+- [진주남강유등축제](https://tteonamoa.org/articles/jinju-namgang-yudeung-festival/)
+
+## 데이터 정책
+- 출처: 한국관광공사 TourAPI 기반 자체 정리, 축제별 공식 안내 재확인 권장
+- 각 글에 기간·장소·입장료·관람시간·문의처 표 포함
+- 인용 시 표기: 떠나모아(tteonamoa.org)

@@ -12,14 +12,18 @@ const a = articles.find((x) => x.slug === slug);
 if (!a) throw new Error("missing article " + slug);
 const f = festivals.find((x) => x.slug === slug);
 const titlePlain = a.title.replace(" | 떠나모아", "");
+// 발행일: 데이터에 있으면 사용, 없으면 초도 발행 배치일(2026-09-23)로 폴백
+const pubDate = a.datePublished ?? "2026-09-23";
+const modDate = a.dateModified ?? pubDate;
+const bodyHtml = (a.body ?? "").replace(/<h1[^>]*>.*?<\/h1>\s*/s, "");
 const ld = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: titlePlain,
   description: a.description,
   image: [a.image],
-  datePublished: "2026-09-23",
-  dateModified: "2026-09-23",
+  datePublished: pubDate,
+  dateModified: modDate,
   author: { "@type": "Organization", name: "떠나모아", url: "https://tteonamoa.org/" },
   publisher: { "@type": "Organization", name: "떠나모아", url: "https://tteonamoa.org/" },
   mainEntityOfPage: a.canonical,
@@ -51,8 +55,8 @@ const ev = f
   <h1>{titlePlain}</h1>
   <p class="deck">{a.description}</p>
   <p class="meta">장소: {f?.place ?? ""}{f?.tel ? ` · 문의: ${f.tel}` : ""} · 출처: 한국관광공사 TourAPI</p>
-  <p class="byline">작성: 떠나모아 운영팀 · 최종 확인: 2026-09-23 · 오류 제보는 <a href="/contact/">문의 페이지</a>로 보내주세요.</p>
-  <Fragment set:html={a.body} />
+  <p class="byline">작성: 떠나모아 운영팀 · 최종 확인: {modDate} · 오류 제보는 <a href="/contact/">문의 페이지</a>로 보내주세요.</p>
+  <Fragment set:html={bodyHtml} />
   <h2>함께 보면 좋은 축제</h2>
   <ul class="related">
     {(a.related ?? []).map((r) => (
