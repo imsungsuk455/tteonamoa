@@ -2760,7 +2760,24 @@
   "mapx": "128.0800831631",
   "mapy": "35.1904937892",
   "source": "TourAPI",
-  "status": "upcoming"
+  "status": "upcoming",
+  "slug": "jinju-namgang-yudeung-festival",
+  "homepage": "",
+  "official": {
+   "sponsor1": "진주시, 진주문화예술재단, 진주문화관광재단",
+   "sponsor1tel": "055-761-9111, 055-755-9111",
+   "playtime": "13:00~23:00",
+   "eventplace": "진주성 및 진주 남강 일원",
+   "eventhomepage": "",
+   "agelimit": "",
+   "bookingplace": "",
+   "placeinfo": "",
+   "subevent": "",
+   "program": "1. 메인프로그램 : 수상등 전시, 육상등 전시, 드론 라이트 쇼, 수상 불꽃놀이\n2. 부대프로그램 : 야간 퍼레이드, (동반축제 10.9.~10.18.) 개천예술제, 코리아드라마페스티벌\n3. 소비자 참여 프로그램 : 소망등 달기, 유등 띄우기, 부교 건너기\n4. 기타 내용 : 유람선 체험 등",
+   "usetimefestival": "무료",
+   "discountinfofestival": "",
+   "spendtimefestival": ""
+  }
  },
  {
   "id": "f-3542294",
