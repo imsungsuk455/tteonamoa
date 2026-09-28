@@ -28,23 +28,51 @@ const ld = {
   publisher: { "@id": "https://tteonamoa.org/#organization" },
   mainEntityOfPage: a.canonical,
 };
+const feeText = f ? [f.official?.usetimefestival, f.fee].filter(Boolean).join(" ") : "";
+const offerPrice = (() => {
+  if (feeText.includes("무료")) return 0;
+  const nums = [...feeText.matchAll(/([\d,]+)원/g)].map((m) => Number(m[1].replace(/,/g, "")));
+  const uniq = [...new Set(nums)];
+  return uniq.length === 1 ? uniq[0] : null;
+})();
+const offer = {
+  "@type": "Offer",
+  ...(offerPrice !== null ? { price: offerPrice, priceCurrency: "KRW" } : {}),
+  availability: "https://schema.org/InStock",
+  url: a.canonical,
+};
+const hostName = f?.official?.sponsor1 || "주최 기관";
 const ev = f
   ? {
       "@context": "https://schema.org",
       "@type": "Event",
       name: titlePlain,
       description: a.description,
+      url: a.canonical,
       startDate: (f.start || "").replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"),
       endDate: (f.end || "").replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"),
       eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       location: {
         "@type": "Place",
-        name: f.place || "",
-        address: { "@type": "PostalAddress", addressLocality: f.region || "" },
+        ...(f.official?.eventplace || f.place
+          ? { name: f.official?.eventplace || f.place }
+          : {}),
+        address: {
+          "@type": "PostalAddress",
+          ...(f.place ? { streetAddress: f.place } : {}),
+          ...(f.region ? { addressLocality: f.region } : {}),
+          addressCountry: "KR",
+        },
       },
-      image: a.image,
-      organizer: { "@type": "Organization", name: f.official?.sponsor1 || "주최 기관" },
+      image: [a.image],
+      offers: offer,
+      performer: { "@type": "PerformingGroup", name: hostName },
+      organizer: {
+        "@type": "Organization",
+        name: hostName,
+        url: f.official?.eventhomepage || f.homepage || a.canonical,
+      },
     }
   : null;
 ---
