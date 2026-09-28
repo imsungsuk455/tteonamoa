@@ -28,6 +28,7 @@
 - [고양 가을꽃축제](https://tteonamoa.org/articles/goyang-autumn-flower-festival/)
 - [진주남강유등축제](https://tteonamoa.org/articles/jinju-namgang-yudeung-festival/)
 - [김천김밥축제 이색김밥·권역별 즐기는 법](https://tteonamoa.org/articles/gimcheon-gimbap-festival/)
+- [군산시간여행축제 근대역사 체험 가이드](https://tteonamoa.org/articles/gunsan-time-travel-festival/)
 
 ## 데이터 정책
 - 출처: 한국관광공사 TourAPI 기반 자체 정리, 축제별 공식 안내 재확인 권장
