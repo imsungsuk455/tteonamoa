@@ -32,6 +32,8 @@
 - [강릉국수축제 후루룩 먹방 가이드](https://tteonamoa.org/articles/gangneung-noodle-festival/)
 - [합천황토한우축제 구이존 먹방 가이드](https://tteonamoa.org/articles/hapcheon-hanwoo-festival/)
 
+- [포항 해뜨면 국수축제 먹방 가이드](https://tteonamoa.org/articles/pohang-noodle-festival/)
+
 ## 데이터 정책
 - 출처: 한국관광공사 TourAPI 기반 자체 정리, 축제별 공식 안내 재확인 권장
 - 각 글에 기간·장소·입장료·관람시간·문의처 표 포함
