@@ -29,17 +29,22 @@ const ld = {
   mainEntityOfPage: a.canonical,
 };
 const feeText = f ? [f.official?.usetimefestival, f.fee].filter(Boolean).join(" ") : "";
+// GSC offers 경고 대응: 무료 명시 → 0 / 금액이 여러 개면 최저가(부터 가격) / 금액 미상이어도
+// priceCurrency·validFrom은 항상 포함. price 자체가 없을 때만 생략(허위 금액 금지) —
+// 이 경우 verify_extra가 실패하므로 발행 전 실제 요금을 조사해 데이터에 반영할 것.
 const offerPrice = (() => {
   if (feeText.includes("무료")) return 0;
   const nums = [...feeText.matchAll(/([\d,]+)원/g)].map((m) => Number(m[1].replace(/,/g, "")));
-  const uniq = [...new Set(nums)];
-  return uniq.length === 1 ? uniq[0] : null;
+  if (!nums.length) return null;
+  return Math.min(...new Set(nums));
 })();
 const offer = {
   "@type": "Offer",
-  ...(offerPrice !== null ? { price: offerPrice, priceCurrency: "KRW" } : {}),
+  priceCurrency: "KRW",
+  ...(offerPrice !== null ? { price: offerPrice } : {}),
   availability: "https://schema.org/InStock",
   url: a.canonical,
+  validFrom: pubDate,
 };
 const hostName = f?.official?.sponsor1 || "주최 기관";
 const ev = f

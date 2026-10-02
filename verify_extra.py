@@ -18,7 +18,11 @@ for p in sorted(glob.glob(os.path.join(BASE, 'dist/articles/*/index.html'))):
             ev = d
     checks[f'{slug} Event schema'] = ev is not None
     if ev:
-        checks[f'{slug} offers'] = isinstance(ev.get('offers'), dict) and 'url' in ev['offers']
+        off = ev.get('offers') or {}
+        checks[f'{slug} offers'] = isinstance(off, dict) and 'url' in off
+        checks[f'{slug} offers.price'] = 'price' in off
+        checks[f'{slug} offers.priceCurrency'] = off.get('priceCurrency') == 'KRW'
+        checks[f'{slug} offers.validFrom'] = bool(off.get('validFrom'))
         checks[f'{slug} performer'] = bool((ev.get('performer') or {}).get('name'))
         checks[f'{slug} organizer.url'] = bool((ev.get('organizer') or {}).get('url'))
         checks[f'{slug} event.url'] = bool(ev.get('url'))

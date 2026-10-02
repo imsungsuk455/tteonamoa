@@ -62,7 +62,7 @@
    "placeinfo": "",
    "subevent": "",
    "program": "1. 커피거리 핵심 프로그램\n- 100인 100미\n- 별이 빛나는 밤에\n- 안목있는 커피 RADIO\n- 커피 버스킹\n- 커피스타\n- 별의별 강릉커피 \n- 커피체험존\n- 커피크닉\n- 커피웨이브\n- 커피테라피\n- 커피축제 마켓\n- 수공예 마켓\n- 별의별 원두상점 \n- 커피와 인문학\n- 커피 마스터 클래스\n\n2.  커피거리 연계 프로그램\n- 축제 교류\n- 불꽃놀이 \n- 키즈놀이터\n- 커피운동회\n\n3. 도시 전역 확산 프로그램\n- 웰컴 커피숍\n- 영수증 이벤트\n- 스탬프랠리\n- 커피축제 우리동네점",
-   "usetimefestival": "일부 유료",
+   "usetimefestival": "입장 무료 (일부 체험·시음 유료)",
    "discountinfofestival": "",
    "spendtimefestival": ""
   }
@@ -266,7 +266,7 @@
    "placeinfo": "",
    "subevent": "",
    "program": "1. 꽃밭 관람, 문화예술공연, 농원 내 공간연출, 체험·마켓부스 운영 등\n2. 기획공연\n- 엄마까투리 싱어롱 쇼, 버블 매직쇼, 꽃길 버스킹\n3. 부대행사\n- 양주 천일홍 가을 페스타 마라톤(양주시체육회 주최)",
-   "usetimefestival": "입장료 유료",
+   "usetimefestival": "입장료 성인 5,000원·청소년 3,000원 (축제 기간 전액 양주사랑상품권 환급)",
    "discountinfofestival": "",
    "spendtimefestival": ""
   }
