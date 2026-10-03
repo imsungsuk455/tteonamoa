@@ -36,6 +36,8 @@
 
 - [단양온달문화축제 고구려 체험 가이드](https://tteonamoa.org/articles/danyang-ondal-festival/)
 
+- [정선 탄광문화축제 광부 먹거리 가이드](https://tteonamoa.org/articles/jeongseon-tangwang-festival/)
+
 ## 데이터 정책
 - 출처: 한국관광공사 TourAPI 기반 자체 정리, 축제별 공식 안내 재확인 권장
 - 각 글에 기간·장소·입장료·관람시간·문의처 표 포함
