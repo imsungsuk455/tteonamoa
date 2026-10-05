@@ -4697,7 +4697,9 @@
    "usetimefestival": "무료",
    "discountinfofestival": "",
    "spendtimefestival": ""
-  }
+  },
+  "slug": "ulsan-industry-festival",
+  "homepage": ""
  },
  {
   "id": "f-506838",
@@ -5304,6 +5306,57 @@
   "image": "https://tong.visitkorea.or.kr/cms/resource/66/3561066_image2_1.jpg",
   "mapx": "127.8934680000",
   "mapy": "37.6894110000",
+  "source": "TourAPI",
+  "status": "upcoming"
+ },
+ {
+  "id": "f-2987791",
+  "contentId": "2987791",
+  "title": "2026 DMZ OPEN 페스티벌",
+  "region": "경기도 파주시",
+  "place": "경기도 파주시 문산읍 임진각로 148-40",
+  "start": "20261012",
+  "end": "20261129",
+  "fee": "공식 확인",
+  "summary": "2026 DMZ OPEN 페스티벌 일정·장소 확인",
+  "tel": "02-6288-9245",
+  "image": "https://tong.visitkorea.or.kr/cms/resource/23/4116823_image2_1.jpg",
+  "mapx": "126.7447464059",
+  "mapy": "37.8920134562",
+  "source": "TourAPI",
+  "status": "upcoming"
+ },
+ {
+  "id": "f-4117084",
+  "contentId": "4117084",
+  "title": "2026 HELLO DDC FESTIVAL",
+  "region": "경기도 동두천시",
+  "place": "경기도 동두천시 생연동 571-85",
+  "start": "20261018",
+  "end": "20261018",
+  "fee": "공식 확인",
+  "summary": "2026 HELLO DDC FESTIVAL 일정·장소 확인",
+  "tel": "010-3014-2816",
+  "image": "https://tong.visitkorea.or.kr/cms/resource/85/4117085_image2_1.jpg",
+  "mapx": "127.0561166549",
+  "mapy": "37.9131691698",
+  "source": "TourAPI",
+  "status": "upcoming"
+ },
+ {
+  "id": "f-2754710",
+  "contentId": "2754710",
+  "title": "2026 대한민국 산림박람회",
+  "region": "충청북도 청주시",
+  "place": "충청북도 청주시 청원구 밀레니엄1로 18 (주중동)",
+  "start": "20261016",
+  "end": "20261018",
+  "fee": "공식 확인",
+  "summary": "2026 대한민국 산림박람회 일정·장소 확인",
+  "tel": "043-201-2312",
+  "image": "https://tong.visitkorea.or.kr/cms/resource/49/4116849_image2_1.jpg",
+  "mapx": "127.4807568001",
+  "mapy": "36.6811528802",
   "source": "TourAPI",
   "status": "upcoming"
  }
