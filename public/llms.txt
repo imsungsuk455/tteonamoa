@@ -42,6 +42,8 @@
 
 - [울산공업축제 드론쇼·가요제 가이드](https://tteonamoa.org/articles/ulsan-industry-festival/)
 
+- [나주영산강축제 드론·불꽃쇼 가이드](https://tteonamoa.org/articles/naju-yeongsangang-festival/)
+
 ## 데이터 정책
 - 출처: 한국관광공사 TourAPI 기반 자체 정리, 축제별 공식 안내 재확인 권장
 - 각 글에 기간·장소·입장료·관람시간·문의처 표 포함
