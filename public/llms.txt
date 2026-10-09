@@ -46,6 +46,8 @@
 
 - [증평인삼골축제 홍삼 먹거리 가이드](https://tteonamoa.org/articles/jeungpyeong-ginseng-festival/)
 
+- [남해 독일마을 맥주축제 즐기는 법](https://tteonamoa.org/articles/namhae-german-beer-festival/)
+
 ## 데이터 정책
 - 출처: 한국관광공사 TourAPI 기반 자체 정리, 축제별 공식 안내 재확인 권장
 - 각 글에 기간·장소·입장료·관람시간·문의처 표 포함

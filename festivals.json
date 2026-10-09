@@ -4952,7 +4952,24 @@
   "mapx": "128.0383380155",
   "mapy": "34.8001184999",
   "source": "TourAPI",
-  "status": "upcoming"
+  "status": "upcoming",
+  "slug": "namhae-german-beer-festival",
+  "homepage": "",
+  "official": {
+   "sponsor1": "남해군",
+   "sponsor1tel": "055-860-8603",
+   "playtime": "10:00~21:30",
+   "eventplace": "남해독일마을",
+   "eventhomepage": "",
+   "agelimit": "",
+   "bookingplace": "",
+   "placeinfo": "",
+   "subevent": "",
+   "program": "1. 메인프로그램\n- 비어스테이지, 옥토버 나이트, 맥주 베이스 칵테일 경연대회, 요들송, 경남도립예술단 합창공연, 다니엘린다만과 함께하는 파독 토크콘서트\n2. 부대프로그램\n- 체험(꽃팔찌만들기, 캐리커쳐, 독일마을 인생네컷, 독일마을 엽서 만들기, 풍선아트 등), 도르프 마켓 운영, 증강현실(AR) 스탬프 투어\n3. 소비자 참여 프로그램\n- 먹거리부스 운영, 독일기념품 판매\n4. 기타 내용\n- 2026 창작 힐링 칵테일 전국대회 개최, 친환경 축제로 다회용기 사용, 글로컬축제를 위한 영독어 번역",
+   "usetimefestival": "무료",
+   "discountinfofestival": "",
+   "spendtimefestival": ""
+  }
  },
  {
   "id": "f-635451",
@@ -5750,6 +5767,40 @@
   "image": "https://tong.visitkorea.or.kr/cms/resource/56/4114556_image2_1.jpg",
   "mapx": "127.3805035402",
   "mapy": "35.4041318360",
+  "source": "TourAPI",
+  "status": "upcoming"
+ },
+ {
+  "id": "f-4118276",
+  "contentId": "4118276",
+  "title": "모이랑께 가보장께",
+  "region": "전북특별자치도 전주시",
+  "place": "전북특별자치도 전주시 완산구 풍남문3길 1 (전동)",
+  "start": "20261017",
+  "end": "20261017",
+  "fee": "공식 확인",
+  "summary": "모이랑께 가보장께 일정·장소 확인",
+  "tel": "063-232-9938",
+  "image": "https://tong.visitkorea.or.kr/cms/resource/51/4120351_image2_1.jpg",
+  "mapx": "127.1475679117",
+  "mapy": "35.8134931559",
+  "source": "TourAPI",
+  "status": "upcoming"
+ },
+ {
+  "id": "f-3006019",
+  "contentId": "3006019",
+  "title": "함안 국가유산야행",
+  "region": "경상남도 함안군",
+  "place": "경상남도 함안군 가야읍 함안대로 277",
+  "start": "20261009",
+  "end": "20261011",
+  "fee": "공식 확인",
+  "summary": "함안 국가유산야행 일정·장소 확인",
+  "tel": "055-586-0979",
+  "image": "https://tong.visitkorea.or.kr/cms/resource/64/4120364_image2_1.JPG",
+  "mapx": "128.4233921098",
+  "mapy": "35.2559341156",
   "source": "TourAPI",
   "status": "upcoming"
  }
