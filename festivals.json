@@ -5258,7 +5258,24 @@
   "mapx": "126.5098501441",
   "mapy": "33.4919428005",
   "source": "TourAPI",
-  "status": "upcoming"
+  "status": "upcoming",
+  "slug": "jeju-gwangeo-festival",
+  "homepage": "",
+  "official": {
+   "sponsor1": "제주어류양식수협",
+   "sponsor1tel": "064-766-7237",
+   "playtime": "11:00~19:00 (일자별 상이)",
+   "eventplace": "제주어류양식수협 일원",
+   "eventhomepage": "",
+   "agelimit": "",
+   "bookingplace": "",
+   "placeinfo": "",
+   "subevent": "",
+   "program": "1. 체험부스\n- 광어 강도다리 맨손잡기, 곤충체험부스, 페이스페인팅, 투명우산만들기, 모루인형만들기\n\n2. 참여행사\n- 여성부 팔씨름, 광어골든벨, 보물찾기, 광어무게를맞혀라\n\n3. 경연대회\n- 어린이사생대회, 가요제, 청소년댄스대회",
+   "usetimefestival": "입장료 무료",
+   "discountinfofestival": "",
+   "spendtimefestival": ""
+  }
  },
  {
   "id": "f-2867300",
