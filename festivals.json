@@ -5768,7 +5768,24 @@
   "mapx": "127.3805035402",
   "mapy": "35.4041318360",
   "source": "TourAPI",
-  "status": "upcoming"
+  "status": "upcoming",
+  "slug": "namwon-heungbu-festival",
+  "homepage": "",
+  "official": {
+   "sponsor1": "남원시",
+   "sponsor1tel": "063-620-5774",
+   "playtime": "10:00~22:00",
+   "eventplace": "광한루원",
+   "eventhomepage": "",
+   "agelimit": "",
+   "bookingplace": "",
+   "placeinfo": "",
+   "subevent": "",
+   "program": "- 흥부네 특화장터 및 K-푸드 로드 먹거리 장터\n- 어린이 직업체험 「키자니아」\n- 추어요리대회(읍면동 경연)\n- 남원성 전투 공연 및 전통무예 체험\n- 미꾸리 체험행사",
+   "usetimefestival": "무료",
+   "discountinfofestival": "",
+   "spendtimefestival": ""
+  }
  },
  {
   "id": "f-4118276",
