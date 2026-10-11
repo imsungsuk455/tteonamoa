@@ -5717,7 +5717,24 @@
   "mapx": "129.3732768860",
   "mapy": "36.0294710365",
   "source": "TourAPI",
-  "status": "upcoming"
+  "status": "upcoming",
+  "slug": "pohang-nakhwa-night",
+  "homepage": "",
+  "official": {
+   "sponsor1": "포항시",
+   "sponsor1tel": "054-270-2248",
+   "playtime": "17:00~21:00",
+   "eventplace": "포항운하 일원",
+   "eventhomepage": "",
+   "agelimit": "",
+   "bookingplace": "",
+   "placeinfo": "",
+   "subevent": "",
+   "program": "1. 메인프로그램\n- 낙화 연출 19:30~20:30\n2. 부대프로그램\n- 지역 예술인 공연(풍물놀이 및 전통무용 공연 등), 지역 상권 연계 먹거리 부스\n3. 함께 만나는 축제\n- 주말 연계 행사 포함 (세부 내용은 공식 안내 참조)",
+   "usetimefestival": "무료",
+   "discountinfofestival": "",
+   "spendtimefestival": ""
+  }
  },
  {
   "id": "f-3547712",
@@ -5835,6 +5852,40 @@
   "image": "https://tong.visitkorea.or.kr/cms/resource/64/4120364_image2_1.JPG",
   "mapx": "128.4233921098",
   "mapy": "35.2559341156",
+  "source": "TourAPI",
+  "status": "upcoming"
+ },
+ {
+  "id": "f-3014969",
+  "contentId": "3014969",
+  "title": "2026 문화의 달 여수",
+  "region": "전남광주통합특별시 여수시",
+  "place": "전남광주통합특별시 여수시 이순신광장로 188-1 (종화동)",
+  "start": "20261016",
+  "end": "20261019",
+  "fee": "공식 확인",
+  "summary": "2026 문화의 달 여수 일정·장소 확인",
+  "tel": "1833-6912",
+  "image": "https://tong.visitkorea.or.kr/cms/resource/99/4119199_image2_1.jpg",
+  "mapx": "127.7441674961",
+  "mapy": "34.7379516191",
+  "source": "TourAPI",
+  "status": "upcoming"
+ },
+ {
+  "id": "f-2410727",
+  "contentId": "2410727",
+  "title": "2026 보드게임페스타(시즌2)",
+  "region": "서울특별시 강남구",
+  "place": "서울특별시 강남구 남부순환로 3104 (대치동)",
+  "start": "20261121",
+  "end": "20261122",
+  "fee": "공식 확인",
+  "summary": "2026 보드게임페스타(시즌2) 일정·장소 확인",
+  "tel": "070-8611-9803",
+  "image": "https://tong.visitkorea.or.kr/cms/resource/27/4118327_image2_1.png",
+  "mapx": "127.0707521701",
+  "mapy": "37.4960376287",
   "source": "TourAPI",
   "status": "upcoming"
  }
