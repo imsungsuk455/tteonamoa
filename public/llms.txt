@@ -54,6 +54,8 @@
 
 - [포항 낙화의 밤 운하 불꽃 가이드](https://tteonamoa.org/articles/pohang-nakhwa-night/)
 
+- [한복문화주간 2026 유네스코 심포지엄·기념공연 가이드](https://tteonamoa.org/articles/hanbok-culture-week/)
+
 ## 데이터 정책
 - 출처: 한국관광공사 TourAPI 기반 자체 정리, 축제별 공식 안내 재확인 권장
 - 각 글에 기간·장소·입장료·관람시간·문의처 표 포함
