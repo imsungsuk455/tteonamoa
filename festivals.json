@@ -6941,7 +6941,24 @@
   "mapx": "128.4524083386",
   "mapy": "36.6529652915",
   "source": "TourAPI",
-  "status": "upcoming"
+  "status": "upcoming",
+  "slug": "yecheon-bow-festival",
+  "homepage": "",
+  "official": {
+   "sponsor1": "예천군",
+   "sponsor1tel": "054-650-6045",
+   "playtime": "10:00~21:00",
+   "eventplace": "예천 한천체육공원",
+   "eventhomepage": "",
+   "agelimit": "",
+   "bookingplace": "",
+   "placeinfo": "",
+   "subevent": "",
+   "program": "1. 체험 프로그램\n- 활쏘기체험, 활공성전, 유아활쏘기체험, 활놀이터, 이벤트활쏘기 등\n2. 공연 프로그램\n- 활활콘서트, 활력콘서트, 블랙이글스, 예천 국악제, 전국댄스경연대회, 어린이공연 등\n3. 전시·판매\n- 활만들기 시연, 활짝장터(먹거리부스), 푸드트럭, 해보래장터(연계행사)\n4. 연계 축제\n- 예천 농산물축제, 경상북도 평생학습박람회",
+   "usetimefestival": "무료",
+   "discountinfofestival": "",
+   "spendtimefestival": ""
+  }
  },
  {
   "id": "f-3379752",
