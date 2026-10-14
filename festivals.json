@@ -6856,7 +6856,24 @@
   "mapx": "128.1364929393",
   "mapy": "35.7673437280",
   "source": "TourAPI",
-  "status": "upcoming"
+  "status": "upcoming",
+  "slug": "hapcheon-daejanggyeong-festival",
+  "homepage": "",
+  "official": {
+   "sponsor1": "합천군",
+   "sponsor1tel": "055-930-4696",
+   "playtime": "09:00~18:00",
+   "eventplace": "합천군 대장경테마파크",
+   "eventhomepage": "",
+   "agelimit": "",
+   "bookingplace": "",
+   "placeinfo": "",
+   "subevent": "",
+   "program": "1. 전시행사\n- 가을꽃을 활용한 조형물 및 포토존 설치, 국화분재 전시, 팔만대장경 전국예술대전 입상작 전시\n2. 체험행사\n- 실크스크린, 자개 키링 만들기, 국화 그리기(다포만들기), 비누만들기, 도자공기놀이 만들기, 캐리커쳐 그리기, 가훈써주기, 도자기 만들기, 다도 체험 등",
+   "usetimefestival": "입장료 유료(체험료 별도)",
+   "discountinfofestival": "",
+   "spendtimefestival": ""
+  }
  },
  {
   "id": "f-4123034",

@@ -62,6 +62,8 @@
 
 - [예천활축제 활쏘기 체험 가이드](https://tteonamoa.org/articles/yecheon-bow-festival/)
 
+- [대장경기록문화축제 국화분재·체험 가이드](https://tteonamoa.org/articles/hapcheon-daejanggyeong-festival/)
+
 ## 데이터 정책
 - 출처: 한국관광공사 TourAPI 기반 자체 정리, 축제별 공식 안내 재확인 권장
 - 각 글에 기간·장소·입장료·관람시간·문의처 표 포함
