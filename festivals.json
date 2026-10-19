@@ -6907,7 +6907,24 @@
   "mapx": "126.3814912601",
   "mapy": "34.7859637470",
   "source": "TourAPI",
-  "status": "upcoming"
+  "status": "upcoming",
+  "slug": "mokpo-heritage-night",
+  "homepage": "",
+  "official": {
+   "sponsor1": "목포시",
+   "sponsor1tel": "061-270-8321",
+   "playtime": "18:00~22:00",
+   "eventplace": "목포근대역사문화공간 일원",
+   "eventhomepage": "",
+   "agelimit": "",
+   "bookingplace": "",
+   "placeinfo": "",
+   "subevent": "",
+   "program": "- 야경 : 역사의 빛, 문화유산산책, 근대역사 미디어아트, 만호싸롱\n- 야화 : 해설이 있는 옥공예 전시, 근대 경성복 체험, 화가의 골목 미술체험, 명무의 춤, 맥 등\n- 야로 : 타임로드 퍼레이드, 역사길 도보투어, 어린이 탐험길 등\n- 야시 : 플리마켓, 도장공예체험, 업사이클링 공방체험 등\n- 야설 : 남도명창열전, 달빛 버스킹 공연, 문화유산 속 재즈콘서트, 밤하늘 오케스트라 중창단 등\n- 야식 : 미식푸드트럭 야시장, 목포술야, 목포맛집로드\n- 야사 : 해설이 있는 근대가요콘서트, 개항식 거리극, 해양 유물 전시 및 관련 체험 등\n- 야숙 : 목포야행스테이",
+   "usetimefestival": "무료",
+   "discountinfofestival": "",
+   "spendtimefestival": ""
+  }
  },
  {
   "id": "f-4122301",
@@ -7535,6 +7552,40 @@
   "image": "https://tong.visitkorea.or.kr/cms/resource/48/4127748_image2_1.jpg",
   "mapx": "126.9947387353",
   "mapy": "37.5595422700",
+  "source": "TourAPI",
+  "status": "upcoming"
+ },
+ {
+  "id": "f-3015176",
+  "contentId": "3015176",
+  "title": "UN평화축제",
+  "region": "부산광역시 남구",
+  "place": "부산광역시 남구 대연동",
+  "start": "20261023",
+  "end": "20261025",
+  "fee": "공식 확인",
+  "summary": "UN평화축제 일정·장소 확인",
+  "tel": "051-744-7707",
+  "image": "https://tong.visitkorea.or.kr/cms/resource/76/4127776_image2_1.JPG",
+  "mapx": "129.1003934000",
+  "mapy": "35.1264788000",
+  "source": "TourAPI",
+  "status": "upcoming"
+ },
+ {
+  "id": "f-4127713",
+  "contentId": "4127713",
+  "title": "《소장품, 시대의 장면들》",
+  "region": "서울특별시 종로구",
+  "place": "서울특별시 종로구 동숭길 3 (동숭동)",
+  "start": "20261016",
+  "end": "20261206",
+  "fee": "공식 확인",
+  "summary": "《소장품, 시대의 장면들》 일정·장소 확인",
+  "tel": "02-760-4850",
+  "image": "https://tong.visitkorea.or.kr/cms/resource/18/4127718_image2_1.jpg",
+  "mapx": "127.0032561826",
+  "mapy": "37.5805022888",
   "source": "TourAPI",
   "status": "upcoming"
  }
